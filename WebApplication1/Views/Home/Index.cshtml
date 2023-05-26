@@ -1,0 +1,19 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@using WebApplication1.Views.Home 
+
+@{
+    Database db = new Database();
+    List<Article> articles = db.LoadData();
+    List<Chapter> chapters = db.LoadChapters();
+    
+}
+
+@foreach (var chapter in chapters)
+{
+    <p>@chapter.Title</p>
+}
+
+
