@@ -1,11 +1,12 @@
 ﻿using System.Data.SQLite;
 
+
 namespace WebApplication1.Views.Home
 {
     public partial class Database
     {
         private SQLiteConnection connection;
-        private string databaseName = "\"C:\\Users\\Viet\\Downloads\\net03-1.db\"";
+        private string databaseName = "Models\\net03-1.db";
 
         public Database()
         {
@@ -61,6 +62,57 @@ namespace WebApplication1.Views.Home
 
             return chapters;
         }
+        public List<Section> LoadSections()
+        {
+            List<Section> sections = new List<Section>();
+
+            string query = "SELECT ID,Title,Content,ArticleID FROM Sections";
+
+            SQLiteCommand command = new SQLiteCommand(query, connection);
+            SQLiteDataReader reader = command.ExecuteReader();
+
+            while (reader.Read())
+            {
+                sections.Add(new Section
+                {
+                    ID = reader.GetInt32(0),
+                    Title = reader.GetString(1),
+                    Content = reader.GetString(2),
+                    ArticleID = reader.GetInt32(3)
+                });
+            }
+
+            return sections;
+        }
+
+        public void DeleteChapter(int chapterId)
+        {
+            string query = "DELETE FROM Chapters WHERE ID = @ID";
+
+            SQLiteCommand command = new SQLiteCommand(query, connection);
+            command.Parameters.AddWithValue("@ID", chapterId);
+            command.ExecuteNonQuery();
+        }
+
+        public void DeleteArticle(int articleId)
+        {
+            string query = "DELETE FROM Articles WHERE ID = @ID";
+
+            SQLiteCommand command = new SQLiteCommand(query, connection);
+            command.Parameters.AddWithValue("@ID", articleId);
+            command.ExecuteNonQuery();
+        }
+
+        public void DeleteSection(int sectionId)
+        {
+            string query = "DELETE FROM Sections WHERE ID = @ID";
+
+            SQLiteCommand command = new SQLiteCommand(query, connection);
+            command.Parameters.AddWithValue("@ID", sectionId);
+            command.ExecuteNonQuery();
+        }
+
+
 
 
     }

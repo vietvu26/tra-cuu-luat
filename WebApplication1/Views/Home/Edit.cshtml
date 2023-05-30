@@ -1,0 +1,6 @@
+﻿@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+
+@{
+    var chapterId = HttpContextAccessor.HttpContext.Request.Query["id"];
+    // Sử dụng chapterId để thực hiện xử lý sửa đổi dữ liệu
+}

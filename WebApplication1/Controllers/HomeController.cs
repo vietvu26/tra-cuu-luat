@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using WebApplication1.Models;
+using WebApplication1.Views.Home;
+using System.Data.SQLite;
 
 namespace WebApplication1.Controllers
 {
@@ -12,6 +14,36 @@ namespace WebApplication1.Controllers
         {
             _logger = logger;
         }
+        [HttpPost]
+        public IActionResult DeleteChapter(int chapterId)
+        {
+            // Code to delete chapter from the database using chapterId
+            // ...
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        [HttpPost]
+        public IActionResult DeleteArticle(int articleId)
+        {
+            string connectionString = "\"C:\\Users\\Viet\\Documents\\Zalo Received Files\\net03-1.db\"";
+
+            using (SQLiteConnection connection = new SQLiteConnection(connectionString))
+            {
+                connection.Open();
+
+                string query = "DELETE FROM Articles WHERE ID = @ID";
+
+                using (SQLiteCommand command = new SQLiteCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@ID", articleId);
+                    command.ExecuteNonQuery();
+                }
+            }
+
+            return RedirectToAction("Index");
+        }
+
 
         public IActionResult Index()
         {
@@ -24,6 +56,10 @@ namespace WebApplication1.Controllers
         }
 
         public IActionResult lienlac()
+        {
+            return View();
+        }
+        public IActionResult Edit()
         {
             return View();
         }
