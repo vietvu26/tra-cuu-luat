@@ -6,7 +6,7 @@ namespace WebApplication1.Views.Home
     public partial class Database
     {
         private SQLiteConnection connection;
-        private string databaseName = "\"C:\\Users\\Viet\\Documents\\Zalo Received Files\\net03-1.db\"";
+        private string databaseName = "Models\\net03-1.db";
 
         public Database()
         {
@@ -83,6 +83,31 @@ namespace WebApplication1.Views.Home
                 a.Avg = reader.GetString(5);
                 a.ArticleID = reader.GetInt32(8);
                 sections.Add(a);
+            }
+
+            return sections;
+        }
+
+        public List<Section> search(string data)
+        {
+            List<Section> sections = new List<Section>();
+
+            string query = "SELECT ID, Title, Content, ArticleID FROM Sections WHERE Title LIKE '%' || @data || '%'";
+
+            SQLiteCommand command = new SQLiteCommand(query, connection);
+            command.Parameters.AddWithValue("@data", data);
+            SQLiteDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                sections.Add(new Section
+                {
+                    ID = reader.GetInt32(0),
+                    Title = reader.GetString(1),
+                    Content = reader.GetString(2),
+                    ArticleID = reader.GetInt32(3),
+
+
+                });
             }
 
             return sections;

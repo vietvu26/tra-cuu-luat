@@ -183,6 +183,25 @@ namespace WebApplication1.Controllers
             HttpContext.Session.Clear();
             return RedirectToAction("Index", "Home");
         }
+        public IActionResult timkiem(string data)
+        {
+            ViewBag.data = data;
+            // Gọi phương thức timkiem và truyền dữ liệu tìm kiếm vào
+            List<Section> searchResults = new Database().search(data);
+            Console.WriteLine("Danh sách searchResults:");
+            foreach (var section in searchResults)
+            {
+                Console.WriteLine("ID: " + section.ID);
+                Console.WriteLine("Title: " + section.Title);
+                Console.WriteLine("Content: " + section.Content);
+                Console.WriteLine("Avg: " + section.Avg);
+                Console.WriteLine("ArticleID: " + section.ArticleID);
+                Console.WriteLine("---------------------");
+            }
+
+            // Truyền danh sách kết quả tìm kiếm vào view
+            return View("timkiem", searchResults);
+        }
 
     }
 }
