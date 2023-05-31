@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "+vqeAbJqgdv4mIIhaGF7KfwsfHi1u3O0YBJ6fFlMowk=",
+  "Hash": "V4R9HvstJHknGzZP4jf0p6/ou/c9JYxVeJE7U/osd68=",
   "Source": "WebApplication1",
   "BasePath": "_content/WebApplication1",
   "Mode": "Default",
@@ -66,6 +66,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\site.css"
+    },
+    {
+      "Identity": "D:\\Congnghe.net lý thuyết\\tra-cuu-luat\\WebApplication1\\wwwroot\\css\\style.css",
+      "SourceId": "WebApplication1",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Congnghe.net lý thuyết\\tra-cuu-luat\\WebApplication1\\wwwroot\\",
+      "BasePath": "_content/WebApplication1",
+      "RelativePath": "css/style.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\style.css"
     },
     {
       "Identity": "D:\\Congnghe.net lý thuyết\\tra-cuu-luat\\WebApplication1\\wwwroot\\favicon.ico",

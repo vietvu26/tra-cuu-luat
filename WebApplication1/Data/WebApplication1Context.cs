@@ -13,7 +13,15 @@ namespace WebApplication1.Data
             : base(options)
         {
         }
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            string databaseName = "C:\\Users\\Viet\\Documents\\Zalo Received Files\\net03-1.db";
+
+            optionsBuilder.UseSqlite($"Data Source={databaseName}");
+        }
 
         public DbSet<WebApplication1.Views.Home.Article> Article { get; set; } = default!;
+
+        public DbSet<WebApplication1.Views.Home.Section>? Section { get; set; }
     }
 }

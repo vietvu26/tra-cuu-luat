@@ -44,14 +44,14 @@
                                     {
                                         <div class="section-content">
                                             @Section.Content
-                                            <br/>
+                                            <br />
                                             <button type="button" class="btn btn-warning">Khung xử phạt : @Section.Min đ - @Section.Max đ</button>
                                             <button type="button" class="btn btn-warning" style="margin-left:350px">Mức xử phạt : @Section.Avg đ</button>
 
 
-                                            <a asp-action="Edit" asp-route-id="@Section.ID">Sửa</a>
+                                            <a href="@Url.Action("EditSection", "Home", new { id = Section.ID })">Sửa</a>
                                             <a asp-action="Delete" asp-route-id="@Section.ID">Delete</a>
-                                            <br/>
+                                            <br />
                                         </div>
                                     }
                                 }

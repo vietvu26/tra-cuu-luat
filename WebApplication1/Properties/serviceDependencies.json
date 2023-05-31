@@ -1,8 +1,9 @@
 {
   "dependencies": {
-    "mssql1": {
-      "type": "mssql",
-      "connectionId": "ConnectionStrings:WebApplication1Context"
+    "sqlite1": {
+      "type": "sqlite",
+      "connectionId": "ConnectionStrings:\"C::Users:Viet:Downloads:net03-1.db\"",
+      "dynamicId": null
     }
   }
 }

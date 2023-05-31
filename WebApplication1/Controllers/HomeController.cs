@@ -14,6 +14,8 @@ namespace WebApplication1.Controllers
         {
             _logger = logger;
         }
+        
+
 
         public IActionResult Index()
         {
@@ -32,6 +34,12 @@ namespace WebApplication1.Controllers
         public IActionResult Edit()
         {
             return View();
+        }
+        public IActionResult EditSection(int id)
+        {
+            Database database = new Database();
+            Section model = database.getKhoan(id);
+            return View(model);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

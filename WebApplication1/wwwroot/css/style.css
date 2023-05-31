@@ -1,0 +1,19 @@
+﻿.title-label {
+    font-size: 24px; /* Kích thước font chữ cho tiêu đề */
+}
+
+.title-input {
+    width: 100%; /* Rộng 100% chiều ngang */
+    padding: 5px; /* Khoảng cách giữa nội dung và khung input */
+}
+
+.content-label {
+    font-size: 16px; /* Kích thước font chữ cho nội dung */
+}
+
+.content-input {
+    width: 80%; /* Rộng 80% chiều ngang */
+    height: 200px; /* Chiều cao */
+    resize: vertical; /* Cho phép điều chỉnh kích thước theo chiều dọc */
+    padding: 5px; /* Khoảng cách giữa nội dung và khung textarea */
+}
