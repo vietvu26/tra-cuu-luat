@@ -121,35 +121,7 @@ namespace WebApplication1.Views.Home
         }
 
 
-        public void DeleteChapter(int chapterId)
-        {
-            string query = "DELETE FROM Chapters WHERE ID = @ID";
-
-            SQLiteCommand command = new SQLiteCommand(query, connection);
-            command.Parameters.AddWithValue("@ID", chapterId);
-            command.ExecuteNonQuery();
-        }
-
-        public void DeleteArticle(int articleId)
-        {
-            string query = "DELETE FROM Articles WHERE ID = @ID";
-
-            SQLiteCommand command = new SQLiteCommand(query, connection);
-            command.Parameters.AddWithValue("@ID", articleId);
-            command.ExecuteNonQuery();
-        }
-
-        public void DeleteSection(int sectionId)
-        {
-            string query = "DELETE FROM Sections WHERE ID = @ID";
-
-            SQLiteCommand command = new SQLiteCommand(query, connection);
-            command.Parameters.AddWithValue("@ID", sectionId);
-            command.ExecuteNonQuery();
-        }
-
-
-
+      
 
     }
 

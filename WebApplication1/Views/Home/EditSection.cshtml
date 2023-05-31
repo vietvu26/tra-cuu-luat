@@ -1,7 +1,7 @@
 ﻿@using WebApplication1.Views.Home
 @model Section
 <link rel="stylesheet" href="~/css/style1.css" />
-@using (Html.BeginForm("Save", "YourController"))
+@using (Html.BeginForm("Save", "Home"))
 {
     @Html.HiddenFor(model => model.ID)
     @Html.HiddenFor(model => model.ArticleID)
@@ -11,7 +11,10 @@
         @Html.LabelFor(model => model.Title, new { @class = "title-label" })
         @Html.TextBoxFor(model => model.Title, new { @class = "title-input" })
     </div>
-
+    <div>
+        @Html.LabelFor(model => model.Content, new { @class = "content-label" })
+        @Html.TextAreaFor(model => model.Content, new { @class = "content-input" })
+    </div>
     <div>
         @Html.LabelFor(model => model.Min)
         @Html.TextBoxFor(model => model.Min)
@@ -27,10 +30,7 @@
         @Html.TextBoxFor(model => model.Avg)
     </div>
 
-    <div>
-        @Html.LabelFor(model => model.Content, new { @class = "content-label" })
-        @Html.TextAreaFor(model => model.Content, new { @class = "content-input" })
-    </div>
+   
 
     <input type="submit" value="Save" />
 }

@@ -1,0 +1,65 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@using WebApplication1.Views.Home
+
+@{
+    Database db = new Database();
+    List<Article> articles = db.LoadData();
+    List<Chapter> chapters = db.LoadChapters();
+    List<Section> sections = db.LoadSections();
+}
+
+
+<div class="accordion accordion-flush" id="accordionFlushExample">
+    @foreach (var chapter in chapters)
+    {
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="flush-heading-@chapter.ID">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse-@chapter.ID" aria-expanded="false" aria-controls="flush-collapse-@chapter.ID">
+                    Chương @chapter.ID: @chapter.Title
+                </button>
+            </h2>
+            <div id="flush-collapse-@chapter.ID" class="accordion-collapse collapse" aria-labelledby="flush-heading-@chapter.ID" data-bs-parent="#accordionFlushExample">
+                <div class="accordion-body">
+                    <div>
+                        <a asp-action="Edit" asp-route-id="@chapter.ID">Sửa</a>
+                        <a asp-action="Delete" asp-route-id="@chapter.ID">Delete</a>
+                    </div>
+                    @foreach (var article in articles)
+                    {
+                        if (article.ChapterID == chapter.ID)
+                        {
+                            <div class="accordion-body">
+                                <div>
+                                    @article.Title
+                                    <a asp-action="Edit" asp-route-id="@article.ID">Sửa</a>
+                                    <a asp-action="Delete" asp-route-id="@article.ID">Delete</a>
+                                    <br />
+                                </div>
+                                @foreach (var Section in sections)
+                                {
+                                    if (Section.ArticleID == article.ID)
+                                    {
+                                        <div class="section-content">
+                                            @Section.Content
+                                            <br />
+                                            <button type="button" class="btn btn-warning">Khung xử phạt : @Section.Min đ - @Section.Max đ</button>
+                                            <button type="button" class="btn btn-warning" style="margin-left:350px">Mức xử phạt : @Section.Avg đ</button>
+
+
+                                            <a href="@Url.Action("EditSection", "Home", new { id = Section.ID })">Sửa</a>
+                                            <a asp-action="Delete" asp-route-id="@Section.ID">Delete</a>
+                                            <br />
+                                        </div>
+                                    }
+                                }
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+    }
+</div>

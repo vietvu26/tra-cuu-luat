@@ -1,19 +1,86 @@
-﻿.title-label {
-    font-size: 24px; /* Kích thước font chữ cho tiêu đề */
+﻿body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+    margin: 0;
+    padding: 20px;
 }
 
-.title-input {
-    width: 100%; /* Rộng 100% chiều ngang */
-    padding: 5px; /* Khoảng cách giữa nội dung và khung input */
+h2 {
+    color: #333;
+    text-align: center;
 }
 
-.content-label {
-    font-size: 16px; /* Kích thước font chữ cho nội dung */
+.sidebar {
+    width: 200px;
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    box-sizing: border-box;
+    position: fixed;
+    left: 0;
+    height: 100%;
 }
 
-.content-input {
-    width: 80%; /* Rộng 80% chiều ngang */
-    height: 200px; /* Chiều cao */
-    resize: vertical; /* Cho phép điều chỉnh kích thước theo chiều dọc */
-    padding: 5px; /* Khoảng cách giữa nội dung và khung textarea */
+    .sidebar a {
+        display: block;
+        color: #fff;
+        text-decoration: none;
+        margin-bottom: 10px;
+    }
+
+form {
+    background-color: #fff;
+    padding: 20px;
+    max-width: 400px;
+    margin: 0 auto;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
+
+label {
+    display: block;
+    margin-bottom: 10px;
+    color: #666;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="tel"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+input[type="submit"] {
+    background-color: #4caf50;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+    input[type="submit"]:hover {
+        background-color: #45a049;
+        justify-content: center;
+        text-align: center;
+    }
+
+input[type="button"] {
+    background-color: #4caf50;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+    input[type="button"]:hover {
+        background-color: #45a049;
+        justify-content: center;
+        text-align: center;
+    }

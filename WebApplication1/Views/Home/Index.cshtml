@@ -24,8 +24,10 @@
             <div id="flush-collapse-@chapter.ID" class="accordion-collapse collapse" aria-labelledby="flush-heading-@chapter.ID" data-bs-parent="#accordionFlushExample">
                 <div class="accordion-body">
                     <div>
-                        <a asp-action="Edit" asp-route-id="@chapter.ID">Sửa</a>
+                      <!--
+                          <a asp-action="Edit" asp-route-id="@chapter.ID">Sửa</a>
                         <a asp-action="Delete" asp-route-id="@chapter.ID">Delete</a>
+                      -->  
                     </div>
                     @foreach (var article in articles)
                     {
@@ -34,8 +36,8 @@
                             <div class="accordion-body">
                                 <div>
                                     @article.Title
-                                    <a asp-action="Edit" asp-route-id="@article.ID">Sửa</a>
-                                    <a asp-action="Delete" asp-route-id="@article.ID">Delete</a>
+                                    <!-- <a asp-action="Edit" asp-route-id="@article.ID">Sửa</a>
+                                    <a asp-action="Delete" asp-route-id="@article.ID">Delete</a> -->
                                     <br/>
                                 </div>
                                 @foreach (var Section in sections)
@@ -47,10 +49,12 @@
                                             <br />
                                             <button type="button" class="btn btn-warning">Khung xử phạt : @Section.Min đ - @Section.Max đ</button>
                                             <button type="button" class="btn btn-warning" style="margin-left:350px">Mức xử phạt : @Section.Avg đ</button>
-
-
-                                            <a href="@Url.Action("EditSection", "Home", new { id = Section.ID })">Sửa</a>
+                                            <!--
+                                                 <a href="@Url.Action("EditSection", "Home", new { id = Section.ID })">Sửa</a>
                                             <a asp-action="Delete" asp-route-id="@Section.ID">Delete</a>
+                                            -->
+
+                                           
                                             <br />
                                         </div>
                                     }

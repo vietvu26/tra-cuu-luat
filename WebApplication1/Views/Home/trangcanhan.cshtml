@@ -1,0 +1,62 @@
+﻿@model User
+@{
+    ViewData["Title"] = "Trang Cá Nhân";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="@Url.Content("~/css/style.css")">
+    <script>
+        function enableEdit() {
+            document.getElementById("email").readOnly = false;
+            document.getElementById("sodienthoai").readOnly = false;
+            document.getElementById("saveBtn").style.display = "inline";
+            document.getElementById("cancelBtn").style.display = "inline";
+            document.getElementById("editBtn").style.display = "none";
+        }
+    </script>
+</head>
+<body>
+    <div class="account">
+        <div class="sidebar">
+            <a class="active" href="@Url.Action("trangcanhan", "Home")">Trang cá nhân</a>
+            <a href="@Url.Action("NewPassWord", "Home")">Đổi mật khẩu</a>
+            <a href="@Url.Action("Logout", "Home")">Đăng xuất</a>
+
+        </div>
+    </div>
+
+
+    <form action="@Url.Action("LuuThongTin", "Home")" method="POST">
+
+
+        <h2>Thông tin tài khoản</h2>
+        <label for="tenTruycap">Tên truy cập:</label>
+        <input type="text" id="tenTruycap" name="tenTruycap" value="@Model.UserName" readonly><br><br>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" value="@Model.Email" readonly><br><br>
+
+        <label for="sdt">Số điện thoại:</label>
+        @if (Model.Mobile != 0)
+        {
+            <input type="text" id="sodienthoai" name="sodienthoai" value="@Model.Mobile" readonly>
+        }
+        else
+        {
+            <input type="text" id="sodienthoai" name="sodienthoai" readonly>
+        }
+
+
+
+        <input type="button" id="editBtn" value="Sửa thông tin" onclick="enableEdit()">
+        <input type="submit" id="saveBtn" value="Lưu thông tin" style="display: none;">
+        <input type="button" id="cancelBtn" value="Bỏ qua" style="display: none;" onclick="window.location.reload()">
+    </form>
+
+</body>
+</html>
+
