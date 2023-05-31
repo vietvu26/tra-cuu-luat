@@ -41,6 +41,19 @@ namespace WebApplication1.Controllers
             Section model = database.getKhoan(id);
             return View(model);
         }
+        public IActionResult EditChapter(int id)
+        {
+            Database database = new Database();
+            Chapter model = database.getChuong(id);
+            return View(model);
+        }
+        public IActionResult EditArticle(int id)
+        {
+            Database database = new Database();
+            Article model = database.getDieu(id);
+            return View(model);
+        }
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
@@ -56,7 +69,7 @@ namespace WebApplication1.Controllers
         public IActionResult Login(User model)
         {
 
-            string dbPath = "\"C:\\Users\\Viet\\Documents\\Zalo Received Files\\net03-1.db\"";
+            string dbPath = "Models\\net03-1.db";
             SQLiteManager sqliteManager = new SQLiteManager(dbPath);
             User users = sqliteManager.GetUsers(model);
             if (users != null)
@@ -100,7 +113,7 @@ namespace WebApplication1.Controllers
         [HttpPost]
         public ActionResult Signup(User model)
         {
-            string dbPath = "\"C:\\Users\\Viet\\Documents\\Zalo Received Files\\net03-1.db\"";
+            string dbPath = "Models\\net03-1.db";
             SQLiteManager sqliteManager = new SQLiteManager(dbPath);
 
             // Kiểm tra xem người dùng đã tồn tại trong cơ sở dữ liệu chưa
@@ -127,7 +140,7 @@ namespace WebApplication1.Controllers
         [HttpPost]
         public ActionResult ForgotPassword(User model)
         {
-            string dbPath = "\"C:\\Users\\Viet\\Documents\\Zalo Received Files\\net03-1.db\"";
+            string dbPath = "Models\\net03-1.db";
             SQLiteManager sqliteManager = new SQLiteManager(dbPath);
             // Kiểm tra thông tin người dùng:
             User checkUser = sqliteManager.CheckUsers1(model);
@@ -150,7 +163,7 @@ namespace WebApplication1.Controllers
         // Phương thức cập nhật mật khẩu mới cho người dùng
         public ActionResult UpdateUserPassword(string email, string newPassword)
         {
-            string dbPath = "\"C:\\Users\\Viet\\Documents\\Zalo Received Files\\net03-1.db\"";
+            string dbPath = "Models\\net03-1.db";
             SQLiteManager sqliteManager = new SQLiteManager(dbPath);
             sqliteManager.UpdatePassword(email, newPassword);
             return RedirectToAction("PasswordResetConfirmation", "Home");
@@ -163,7 +176,7 @@ namespace WebApplication1.Controllers
         }
         public ActionResult LuuThongTin(string tenTruycap, string email, string sodienthoai)
         {
-            string dbPath = "\"C:\\Users\\Viet\\Documents\\Zalo Received Files\\net03-1.db\"";
+            string dbPath = "Models\\net03-1.db";
             SQLiteManager sqliteManager = new SQLiteManager(dbPath);
             sqliteManager.saveUser(tenTruycap, email, sodienthoai);
             return RedirectToAction("trangcanhan", "Home");
@@ -171,7 +184,7 @@ namespace WebApplication1.Controllers
         public IActionResult trangcanhan()
         {
             var id = HttpContext.Session.GetString("ID");
-            string dbPath = "\"C:\\Users\\Viet\\Documents\\Zalo Received Files\\net03-1.db\"";
+            string dbPath = "Models\\net03-1.db";
             SQLiteManager sqliteManager = new SQLiteManager(dbPath);
             User users = sqliteManager.GetUsers(id);
             return View(users);
@@ -202,6 +215,148 @@ namespace WebApplication1.Controllers
             // Truyền danh sách kết quả tìm kiếm vào view
             return View("timkiem", searchResults);
         }
+        public IActionResult Save()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult Save(Chapter model)
+        {
+            string dbPath = "Models\\net03-1.db";
+
+            using (var connection = new SQLiteConnection($"Data Source={dbPath}"))
+            {
+                connection.Open();
+
+                // Cập nhật title và content của chương
+                string updateQuery = "UPDATE Chapters SET Title = @Title, Content = @Content WHERE ID = @ID";
+                using (var command = new SQLiteCommand(updateQuery, connection))
+                {
+                    command.Parameters.AddWithValue("@Title", model.Title);
+                    command.Parameters.AddWithValue("@Content", model.Content);
+                    command.Parameters.AddWithValue("@ID", model.ID);
+
+                    command.ExecuteNonQuery();
+                }
+            }
+
+            // Chuyển hướng về trang khác sau khi cập nhật thành công
+            return RedirectToAction("home_admin");
+        }
+        public ActionResult SaveSection(Section model)
+        {
+            string dbPath = "Models\\net03-1.db";
+
+            using (var connection = new SQLiteConnection($"Data Source={dbPath}"))
+            {
+                connection.Open();
+
+                // Cập nhật title và content của chương
+                string updateQuery = "UPDATE Sections SET Title = @Title, Content = @Content, Min = @Min, Max = @Max, Avg = @Avg WHERE ID = @ID";
+                using (var command = new SQLiteCommand(updateQuery, connection))
+                {
+                    command.Parameters.AddWithValue("@Title", model.Title);
+                    command.Parameters.AddWithValue("@Content", model.Content);
+                    command.Parameters.AddWithValue("@ID", model.ID);
+                    command.Parameters.AddWithValue("@Min", model.Min);
+                    command.Parameters.AddWithValue("@Max", model.Max);
+                    command.Parameters.AddWithValue("@Avg", model.Avg);
+
+
+                    command.ExecuteNonQuery();
+                }
+            }
+
+            // Chuyển hướng về trang khác sau khi cập nhật thành công
+            return RedirectToAction("home_admin");
+        }
+       
+
+        public ActionResult SaveArticle(Article model)
+        {
+            string dbPath = "Models\\net03-1.db";
+
+            using (var connection = new SQLiteConnection($"Data Source={dbPath}"))
+            {
+                connection.Open();
+
+                // Cập nhật thông tin của Article vào cơ sở dữ liệu
+                string updateQuery = "UPDATE Articles SET Title = @Title, Content = @Content WHERE ID = @ID";
+                using (var command = new SQLiteCommand(updateQuery, connection))
+                {
+                    command.Parameters.AddWithValue("@Title", model.Title);
+                    command.Parameters.AddWithValue("@Content", model.Content);
+                    command.Parameters.AddWithValue("@ID", model.ID);
+
+                    command.ExecuteNonQuery();
+                }
+            }
+
+            // Chuyển hướng về trang khác sau khi cập nhật thành công
+            return RedirectToAction("home_admin");
+        }
+        public ActionResult DeleteArticle(int id)
+        {
+            string dbPath = "Models\\net03-1.db";
+
+            using (var connection = new SQLiteConnection($"Data Source={dbPath}"))
+            {
+                connection.Open();
+
+                // Xóa article với ID tương ứng
+                string deleteQuery = "DELETE FROM Articles WHERE ID = @ID";
+                using (var command = new SQLiteCommand(deleteQuery, connection))
+                {
+                    command.Parameters.AddWithValue("@ID", id);
+                    command.ExecuteNonQuery();
+                }
+            }
+
+            // Chuyển hướng về trang danh sách article sau khi xóa thành công
+            return RedirectToAction("home_admin");
+        }
+        public ActionResult DeleteChapter(int id)
+        {
+            string dbPath = "Models\\net03-1.db";
+
+            using (var connection = new SQLiteConnection($"Data Source={dbPath}"))
+            {
+                connection.Open();
+
+                // Xóa article với ID tương ứng
+                string deleteQuery = "DELETE FROM Chapters WHERE ID = @ID";
+                using (var command = new SQLiteCommand(deleteQuery, connection))
+                {
+                    command.Parameters.AddWithValue("@ID", id);
+                    command.ExecuteNonQuery();
+                }
+            }
+
+            // Chuyển hướng về trang danh sách article sau khi xóa thành công
+            return RedirectToAction("home_admin");
+        }
+        public ActionResult DeleteSection(int id)
+        {
+            string dbPath = "Models\\net03-1.db";
+
+            using (var connection = new SQLiteConnection($"Data Source={dbPath}"))
+            {
+                connection.Open();
+
+                // Xóa article với ID tương ứng
+                string deleteQuery = "DELETE FROM Sections WHERE ID = @ID";
+                using (var command = new SQLiteCommand(deleteQuery, connection))
+                {
+                    command.Parameters.AddWithValue("@ID", id);
+                    command.ExecuteNonQuery();
+                }
+            }
+
+            // Chuyển hướng về trang danh sách article sau khi xóa thành công
+            return RedirectToAction("home_admin");
+        }
+
+
 
     }
 }

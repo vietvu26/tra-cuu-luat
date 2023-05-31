@@ -1,36 +1,45 @@
 ﻿@using WebApplication1.Views.Home
 @model Section
-<link rel="stylesheet" href="~/css/style1.css" />
-@using (Html.BeginForm("Save", "Home"))
+<link rel="stylesheet" href="~/css/admin.css" />
+<div class="row">
+    <div class="col-md-4">
+@using (Html.BeginForm("SaveSection", "Home"))
 {
     @Html.HiddenFor(model => model.ID)
     @Html.HiddenFor(model => model.ArticleID)
     @Html.HiddenFor(model => model.DecreeID)
 
-    <div>
-        @Html.LabelFor(model => model.Title, new { @class = "title-label" })
-        @Html.TextBoxFor(model => model.Title, new { @class = "title-input" })
-    </div>
-    <div>
-        @Html.LabelFor(model => model.Content, new { @class = "content-label" })
-        @Html.TextAreaFor(model => model.Content, new { @class = "content-input" })
-    </div>
-    <div>
-        @Html.LabelFor(model => model.Min)
-        @Html.TextBoxFor(model => model.Min)
-    </div>
+             <div class="form-group mb-3">
+                @Html.LabelFor(model => model.Title,"Tiêu đề *",new {@class="control-label mt-3"})
+                @Html.TextBoxFor(model => model.Title,new {@class = "form-control-1",name="Title"})
+              </div>
+            <div class="form-group mb-3">
+                @Html.LabelFor(model => model.Content,"Mô tả",new {@class="control-label"})
+                @Html.TextAreaFor(model => model.Content,3,2,new {@class = "form-control-2",name="Title"})
+                    </div>
+            <div class="form-group mb-3">
+                @Html.LabelFor(model => model.Min,"Mức phạt tối thiểu",new {@class="control-label mt-3"})
+                @Html.TextBoxFor(model => model.Min,new {@class = "form-control",name="Title"})
+             </div>
 
-    <div>
-        @Html.LabelFor(model => model.Max)
-        @Html.TextBoxFor(model => model.Max)
-    </div>
+            <div class="form-group mb-3">
+                @Html.LabelFor(model => model.Max,"Mức phạt tối đa",new {@class="control-label mt-3"})
+                @Html.TextBoxFor(model => model.Max,new {@class = "form-control",name="Title"})
+             </div>
 
-    <div>
-        @Html.LabelFor(model => model.Avg)
-        @Html.TextBoxFor(model => model.Avg)
-    </div>
+            <div class="form-group mb-3">
+                @Html.LabelFor(model => model.Avg,"Mức phạt trung bình",new {@class="control-label mt-3"})
+                @Html.TextBoxFor(model => model.Avg,new {@class = "form-control",name="Title"})
+             </div>
 
-   
 
-    <input type="submit" value="Save" />
+
+            <div class="form-group mb-3">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
 }
+    </div>
+</div>
+<div>
+    <a asp-action="home_admin">Trở về danh sách</a>
+</div>

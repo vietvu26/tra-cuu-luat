@@ -131,19 +131,38 @@ namespace WebApplication1.Views.Home
             }
             return a;
         }
-        public void UpdateChapter(Chapter chapter)
+        public Chapter getChuong(int chuongId)
         {
-            string query = "UPDATE Chapters SET Title = @Title, Content = @Content WHERE ID = @ID";
-
-            using (SQLiteCommand command = new SQLiteCommand(query, connection))
+            string query = "Select * FROM Chapters WHERE ID=@ID";
+            SQLiteCommand command = new SQLiteCommand(query, connection);
+            command.Parameters.AddWithValue("@ID", chuongId);
+            Chapter b = new Chapter();
+            SQLiteDataReader reader = command.ExecuteReader();
+            while (reader.Read())
             {
-                command.Parameters.AddWithValue("@Title", chapter.Title);
-                command.Parameters.AddWithValue("@Content", chapter.Content);
-
-
-                command.ExecuteNonQuery();
+                b.ID = reader.GetInt32(0);
+                b.Title = reader.GetString(1);
+                b.Content = reader.GetString(2);
             }
+            return b;
         }
+        public Article getDieu(int dieuId)
+        {
+            string query = "Select * FROM Articles WHERE ID=@ID";
+            SQLiteCommand command = new SQLiteCommand(query, connection);
+            command.Parameters.AddWithValue("@ID", dieuId);
+            Article c = new Article();
+            SQLiteDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                c.ID = reader.GetInt32(0);
+                c.Title = reader.GetString(1);
+                c.Content = reader.GetString(2);
+                c.ChapterID = reader.GetInt32(5);
+            }
+            return c;
+        }
+       
 
 
       
@@ -156,28 +175,6 @@ namespace WebApplication1.Views.Home
         public string Title { get; set; }
         public string Content { get; set; }
         public int ChapterID { get; set; }
-    }
-    public class ArticleAd
-    {
-        public int ID { get; set; }
-        public string Title { get; set; }
-        public string Content { get; set; }
-
-    }
-    public class ChapterAd
-    {
-        public int ID { get; set; }
-        public string Title { get; set; }
-        public string Content { get; set; }
-    }
-    public class SectionAd
-    {
-        public int ID { get; set; }
-        public string Content { get; set; }
-        public string Min { get; set; }
-        public string Max { get; set; }
-        public string Avg { get; set; }
-
     }
 
     public class Chapter

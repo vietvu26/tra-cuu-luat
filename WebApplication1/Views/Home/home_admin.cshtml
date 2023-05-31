@@ -23,20 +23,25 @@
             </h2>
             <div id="flush-collapse-@chapter.ID" class="accordion-collapse collapse" aria-labelledby="flush-heading-@chapter.ID" data-bs-parent="#accordionFlushExample">
                 <div class="accordion-body">
-                    <div>
-                        <a asp-action="Edit" asp-route-id="@chapter.ID">Sửa</a>
-                        <a asp-action="Delete" asp-route-id="@chapter.ID">Delete</a>
+                    <div class="d-flex align-items-center">
+                        <a href="@Url.Action("EditChapter", "Home", new { id = chapter.ID })" class="btn btn-primary" style="margin-right:20px">Sửa</a>
+                        <form method="post" action="@Url.Action("DeleteChapter", "Home", new { id = chapter.ID })">
+                            @Html.AntiForgeryToken()
+                            <button type="submit" class="btn btn-danger" onclick="return confirm('Bạn có chắc muốn xóa?')">Xóa</button>
+                        </form>
                     </div>
                     @foreach (var article in articles)
                     {
                         if (article.ChapterID == chapter.ID)
                         {
                             <div class="accordion-body">
-                                <div>
+                                <div  class="d-flex align-items-center" >
                                     @article.Title
-                                    <a asp-action="Edit" asp-route-id="@article.ID">Sửa</a>
-                                    <a asp-action="Delete" asp-route-id="@article.ID">Delete</a>
-                                    <br />
+                                    <a href="@Url.Action("EditArticle", "Home", new { id = article.ID })" class="btn btn-primary" style="margin-right: 20px; margin-left: 30px;">Sửa</a>
+                                    <form method="post" action="@Url.Action("DeleteArticle", "Home", new { id = article.ID })">
+                                        @Html.AntiForgeryToken()
+                                        <button type="submit" class="btn btn-danger" onclick="return confirm('Bạn có chắc muốn xóa?')">Xóa</button>
+                                    </form>
                                 </div>
                                 @foreach (var Section in sections)
                                 {
@@ -45,13 +50,17 @@
                                         <div class="section-content">
                                             @Section.Content
                                             <br />
-                                            <button type="button" class="btn btn-warning">Khung xử phạt : @Section.Min đ - @Section.Max đ</button>
-                                            <button type="button" class="btn btn-warning" style="margin-left:350px">Mức xử phạt : @Section.Avg đ</button>
-
-
-                                            <a href="@Url.Action("EditSection", "Home", new { id = Section.ID })">Sửa</a>
-                                            <a asp-action="Delete" asp-route-id="@Section.ID">Delete</a>
-                                            <br />
+                                            <div class="d-flex align-items-center">
+                                                <button type="button" class="btn btn-warning">Khung xử phạt: @Section.Min đ - @Section.Max đ</button>
+                                                <button type="button" class="btn btn-warning ml-auto" style="margin-left:350px">Mức xử phạt: @Section.Avg đ</button>
+                                                <div class="section-actions ml-auto d-flex align-items-center" style="margin-left:30px">
+                                                    <a href="@Url.Action("EditSection", "Home", new { id = Section.ID })" class="btn btn-primary">Sửa</a>
+                                                    <form method="post" action="@Url.Action("DeleteSection", "Home", new { id = Section.ID })">
+                                                        @Html.AntiForgeryToken()
+                                                        <button type="submit" class="btn btn-danger ml-2" onclick="return confirm('Bạn có chắc muốn xóa?') ">Xóa</button>
+                                                    </form>
+                                                </div>
+                                            </div>
                                         </div>
                                     }
                                 }
