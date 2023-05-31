@@ -6,7 +6,7 @@ namespace WebApplication1.Views.Home
     public partial class Database
     {
         private SQLiteConnection connection;
-        private string databaseName = "Models\\net03-1.db";
+        private string databaseName = "D:\\Congnghe.net lý thuyết\\tra-cuu-luat\\WebApplication1\\Models\\net03-1.db";
 
         public Database()
         {
@@ -66,20 +66,22 @@ namespace WebApplication1.Views.Home
         {
             List<Section> sections = new List<Section>();
 
-            string query = "SELECT ID,Title,Content,ArticleID FROM Sections";
+            string query = "SELECT * FROM Sections";
 
             SQLiteCommand command = new SQLiteCommand(query, connection);
             SQLiteDataReader reader = command.ExecuteReader();
 
             while (reader.Read())
             {
-                sections.Add(new Section
-                {
-                    ID = reader.GetInt32(0),
-                    Title = reader.GetString(1),
-                    Content = reader.GetString(2),
-                    ArticleID = reader.GetInt32(3)
-                });
+                Section a = new Section();
+                a.ID = reader.GetInt32(0);
+                a.Title = reader.GetString(1);
+                a.Content = reader.GetString(2);
+                a.Min = reader.GetString(3);
+                a.Max = reader.GetString(4);
+                a.Avg = reader.GetString(5);
+                a.ArticleID = reader.GetInt32(8);
+                sections.Add(a);
             }
 
             return sections;
@@ -133,10 +135,13 @@ namespace WebApplication1.Views.Home
 
     public class Section
     {
-        public int Max { get; set; }
-        public int Avg { get; set; }
+        
         public int ArticleID { get; set; }
-        public int Min { get; set; }
+        public string Min { get; set; }
+        public string Max { get; set; }
+        public string Avg { get; set; }
+
+
         public string Title { get; set; }
         public int DecreeID { get; set; }
         public int ID { get; set; }

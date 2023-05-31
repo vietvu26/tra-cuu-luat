@@ -16,8 +16,24 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = D:\Congnghe.net lý thuyết\tra-cuu-luat\WebApplication1
 build_property._RazorSourceGeneratorDebug = 
 
-[D:/Congnghe.net lý thuyết/tra-cuu-luat/WebApplication1/Views/Home/canhan.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxjYW5oYW4uY3NodG1s
+[D:/Congnghe.net lý thuyết/tra-cuu-luat/WebApplication1/Views/Articles/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXJ0aWNsZXNcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Congnghe.net lý thuyết/tra-cuu-luat/WebApplication1/Views/Articles/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXJ0aWNsZXNcRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Congnghe.net lý thuyết/tra-cuu-luat/WebApplication1/Views/Articles/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXJ0aWNsZXNcRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Congnghe.net lý thuyết/tra-cuu-luat/WebApplication1/Views/Articles/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXJ0aWNsZXNcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Congnghe.net lý thuyết/tra-cuu-luat/WebApplication1/Views/Articles/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXJ0aWNsZXNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Congnghe.net lý thuyết/tra-cuu-luat/WebApplication1/Views/Home/Delete.cshtml]

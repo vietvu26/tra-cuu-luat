@@ -14,36 +14,6 @@ namespace WebApplication1.Controllers
         {
             _logger = logger;
         }
-        [HttpPost]
-        public IActionResult DeleteChapter(int chapterId)
-        {
-            // Code to delete chapter from the database using chapterId
-            // ...
-            return RedirectToAction("Index");
-        }
-
-        [HttpPost]
-        [HttpPost]
-        public IActionResult DeleteArticle(int articleId)
-        {
-            string connectionString = "\"C:\\Users\\Viet\\Documents\\Zalo Received Files\\net03-1.db\"";
-
-            using (SQLiteConnection connection = new SQLiteConnection(connectionString))
-            {
-                connection.Open();
-
-                string query = "DELETE FROM Articles WHERE ID = @ID";
-
-                using (SQLiteCommand command = new SQLiteCommand(query, connection))
-                {
-                    command.Parameters.AddWithValue("@ID", articleId);
-                    command.ExecuteNonQuery();
-                }
-            }
-
-            return RedirectToAction("Index");
-        }
-
 
         public IActionResult Index()
         {
@@ -55,7 +25,7 @@ namespace WebApplication1.Controllers
             return View();
         }
 
-        public IActionResult lienlac()
+        public IActionResult Delete()
         {
             return View();
         }
