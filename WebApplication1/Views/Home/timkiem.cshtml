@@ -3,32 +3,64 @@
 @{
     ViewBag.Title = "timkiem";
 }
+<style>
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+    th, td {
+        padding: 8px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+    h1 {
+        color: #333;
+        font-size: 24px;
+    }
+    p {
+        color: #777;
+        font-size: 16px;
+    }
 
-<h1>Kết quả tìm kiếm cho "@ViewBag.data"</h1>
-
+    .center-text {
+        text-align: center;
+        font-size: 24px; /* Kích thước chữ */
+        color: #333; /* Màu chữ */
+        margin-top: 50px; /* Khoảng cách từ đỉnh trang */
+        letter-spacing: 1px; /* Khoảng cách giữa các chữ cái */
+        font-weight: normal; /* Độ đậm của chữ */
+    }
+</style>
 @if (Model != null && Model.Count > 0)
 {
+    <h1>Kết quả tìm kiếm cho "@ViewBag.data"</h1>
     <table>
         <tr>
-            <th>ID</th>
-            <th>Title</th>
-            <th>Content</th>
-            <th>Avg</th>
-            <th>ArticleID</th>
+            <th>Điều</th>
+            <th>Khoản</th>
+            <th>Tiền phạt tối thiểu</th>
+            <th>Tiền phạt tối đa</th>
+            <th>Tiền phạt trung bình</th>
         </tr>
         @foreach (var Section in Model)
         {
             <tr>
-                <td>@Section.ID</td>
                 <td>@Section.Title</td>
                 <td>@Section.Content</td>
-                <td>@Section.ArticleID</td>
+                <td>@Section.Min</td>
+                <td>@Section.Max</td>
+                <td>@Section.Avg</td>
             </tr>
         }
     </table>
 }
+else if (string.IsNullOrEmpty(@ViewBag.data))
+{
+    <p class ="center-text">Vui lòng nhập thông tin trước khi tìm kiếm</p>
+}
 else
 {
+    <h1>Kết quả tìm kiếm cho "@ViewBag.data"</h1>
     <p>Không có kết quả tìm kiếm.</p>
 }
 
