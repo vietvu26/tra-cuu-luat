@@ -16,6 +16,10 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = D:\Congnghe.net lý thuyết\tra-cuu-luat\WebApplication1
 build_property._RazorSourceGeneratorDebug = 
 
+[D:/Congnghe.net lý thuyết/tra-cuu-luat/WebApplication1/Views/Home/Contact.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxDb250YWN0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/Congnghe.net lý thuyết/tra-cuu-luat/WebApplication1/Views/Home/EditArticle.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxFZGl0QXJ0aWNsZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 

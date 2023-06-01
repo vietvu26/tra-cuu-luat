@@ -87,12 +87,12 @@ namespace WebApplication1.Views.Home
 
             return sections;
         }
-        // ham tim kiem 
+
         public List<Section> search(string data)
         {
             List<Section> sections = new List<Section>();
 
-            string query = "SELECT ID, Title, Content, ArticleID, Max, Min, Avg FROM Sections WHERE Title LIKE '%' || @data || '%'";
+            string query = "SELECT ID, Title, Content, ArticleID FROM Sections WHERE Title LIKE '%' || @data || '%'";
 
             SQLiteCommand command = new SQLiteCommand(query, connection);
             command.Parameters.AddWithValue("@data", data);
@@ -105,9 +105,8 @@ namespace WebApplication1.Views.Home
                     Title = reader.GetString(1),
                     Content = reader.GetString(2),
                     ArticleID = reader.GetInt32(3),
-                    Max = reader.GetString(4),
-                    Min = reader.GetString(5),
-                    Avg = reader.GetString(6),
+
+
                 });
             }
 

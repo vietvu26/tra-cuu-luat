@@ -5,22 +5,3 @@
     width: 600px;
     height:300px;
 }
-.penalty-button {
-    margin-left: auto; /* Đẩy phần tử này sang bên phải */
-    margin-right: 60px; /* Khoảng cách 60px từ phải màn hình */
-}
-.mt-md {
-    margin-top: 60px;
-}
-
-/* Các quy tắc phản ứng cho các kích thước màn hình khác */
-@media (max-width: 768px) {
-    .mt-md {
-        margin-top: 0; /* Xóa margin-top cho kích thước màn hình nhỏ hơn md */
-    }
-}
-
-.btn-muc-xu-phat {
-    position: absolute;
-    right: 10px;
-}

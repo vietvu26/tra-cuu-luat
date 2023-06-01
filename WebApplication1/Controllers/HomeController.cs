@@ -3,6 +3,7 @@ using System.Diagnostics;
 using WebApplication1.Models;
 using WebApplication1.Views.Home;
 using System.Data.SQLite;
+using WebApplication1.Services;
 
 namespace WebApplication1.Controllers
 {
@@ -181,6 +182,8 @@ namespace WebApplication1.Controllers
             sqliteManager.saveUser(tenTruycap, email, sodienthoai);
             return RedirectToAction("trangcanhan", "Home");
         }
+
+
         public IActionResult trangcanhan()
         {
             var id = HttpContext.Session.GetString("ID");
@@ -189,6 +192,9 @@ namespace WebApplication1.Controllers
             User users = sqliteManager.GetUsers(id);
             return View(users);
         }
+
+
+
         public IActionResult Logout()
         {
             TempData["ok"] = false;
@@ -196,11 +202,24 @@ namespace WebApplication1.Controllers
             HttpContext.Session.Clear();
             return RedirectToAction("Index", "Home");
         }
+
+
         public IActionResult timkiem(string data)
         {
             ViewBag.data = data;
             // Gọi phương thức timkiem và truyền dữ liệu tìm kiếm vào
             List<Section> searchResults = new Database().search(data);
+            Console.WriteLine("Danh sách searchResults:");
+            foreach (var section in searchResults)
+            {
+                Console.WriteLine("ID: " + section.ID);
+                Console.WriteLine("Title: " + section.Title);
+                Console.WriteLine("Content: " + section.Content);
+                Console.WriteLine("Avg: " + section.Avg);
+                Console.WriteLine("ArticleID: " + section.ArticleID);
+                Console.WriteLine("---------------------");
+            }
+
             // Truyền danh sách kết quả tìm kiếm vào view
             return View("timkiem", searchResults);
         }
@@ -344,8 +363,28 @@ namespace WebApplication1.Controllers
             // Chuyển hướng về trang danh sách article sau khi xóa thành công
             return RedirectToAction("home_admin");
         }
+        [HttpGet]
+        public IActionResult Contact()
+        {
+            return View(new ContactViewModel());
+        }
+        [HttpPost]
+        public async Task<IActionResult> Contact(ContactViewModel model, [FromServices] IEmailService emailService)
+        {
+            if (ModelState.IsValid)
+            {
+                // Gửi email thông tin liên hệ
+                await emailService.SendContactEmailAsync(model);
 
+                // Hiển thị thông báo thành công
+                TempData["SuccessMessage"] = "Cảm ơn bạn đã liên hệ với chúng tôi! Chúngta sẽ phản hồi lại trong thời gian sớm nhất.";
 
+                // Chuyển hướng lại trang liên hệ
+                return RedirectToAction("Contact");
+            }
 
+            // Hiển thị lại form liên hệ nếu thông tin không hợp lệ
+            return View(model);
+        }
     }
 }
