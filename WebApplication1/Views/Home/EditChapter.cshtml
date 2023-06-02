@@ -6,8 +6,7 @@
         @using (Html.BeginForm("Save", "Home"))
         {
             @Html.HiddenFor(model => model.ID)
-          
-
+   
             <div class="form-group mb-3">
                 @Html.LabelFor(model => model.Title,"Tiêu đề *",new {@class="control-label mt-3"})
                 @Html.TextBoxFor(model => model.Title,new {@class = "form-control-1",name="Title"})

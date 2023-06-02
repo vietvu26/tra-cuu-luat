@@ -10,6 +10,7 @@
     List<Chapter> chapters = db.LoadChapters();
     List<Section> sections = db.LoadSections();
 }
+<link rel="stylesheet" href="~/css/admin.css" />
 
 
 <div class="accordion accordion-flush" id="accordionFlushExample">
@@ -51,8 +52,8 @@
                                             @Section.Content
                                             <br />
                                             <div class="d-flex align-items-center">
-                                                <button type="button" class="btn btn-warning">Khung xử phạt: @Section.Min đ - @Section.Max đ</button>
-                                                <button type="button" class="btn btn-warning ml-auto" style="margin-left:350px">Mức xử phạt: @Section.Avg đ</button>
+                                               <button type="button" class="btn btn-warning" style="width: 360px">Khung xử phạt : @Section.Min đ - @Section.Max đ</button>
+                                            <button type="button" class="btn btn-warning btn-muc-xu-phat">Mức xử phạt : @Section.Avg đ</button>
                                                 <div class="section-actions ml-auto d-flex align-items-center" style="margin-left:30px">
                                                     <a href="@Url.Action("EditSection", "Home", new { id = Section.ID })" class="btn btn-primary">Sửa</a>
                                                     <form method="post" action="@Url.Action("DeleteSection", "Home", new { id = Section.ID })">

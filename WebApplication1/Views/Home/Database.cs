@@ -74,15 +74,17 @@ namespace WebApplication1.Views.Home
 
             while (reader.Read())
             {
-                Section a = new Section();
-                a.ID = reader.GetInt32(0);
-                a.Title = reader.GetString(1);
-                a.Content = reader.GetString(2);
-                a.Min = reader.GetString(3);
-                a.Max = reader.GetString(4);
-                a.Avg = reader.GetString(5);
-                a.ArticleID = reader.GetInt32(8);
-                sections.Add(a);
+                sections.Add(new Section
+                {
+                    ID = reader.GetInt32(0),
+                    Title = reader.GetString(1),
+                    Content = reader.GetString(2),
+                    Min = reader.GetString(3),
+                    Max = reader.GetString(4),
+                    Avg = reader.GetString(5),
+                    ArticleID = reader.GetInt32(8),
+                });
+
             }
 
             return sections;
@@ -92,7 +94,7 @@ namespace WebApplication1.Views.Home
         {
             List<Section> sections = new List<Section>();
 
-            string query = "SELECT ID, Title, Content, ArticleID FROM Sections WHERE Title LIKE '%' || @data || '%'";
+            string query = "SELECT ID, Title, Content, ArticleID,Min, Max , Avg FROM Sections WHERE Title LIKE '%' || @data || '%'";
 
             SQLiteCommand command = new SQLiteCommand(query, connection);
             command.Parameters.AddWithValue("@data", data);
@@ -105,8 +107,9 @@ namespace WebApplication1.Views.Home
                     Title = reader.GetString(1),
                     Content = reader.GetString(2),
                     ArticleID = reader.GetInt32(3),
-
-
+                    Min = reader.GetString(4),
+                    Max = reader.GetString(5),
+                    Avg = reader.GetString(6),
                 });
             }
 

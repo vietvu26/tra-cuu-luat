@@ -2,6 +2,7 @@
 using WebApplication1.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
 
 namespace WebApplocation1
 {

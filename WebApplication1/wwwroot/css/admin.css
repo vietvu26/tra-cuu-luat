@@ -10,3 +10,7 @@
     left:800px;
     width: 250px
 }
+.section-actions {
+    position: absolute;
+    right: 80px;
+}
