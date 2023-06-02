@@ -11,6 +11,7 @@
     List<Section> sections = db.LoadSections();
 }
 
+<link rel="stylesheet" href="~/css/admin.css" />
 
 <div class="accordion accordion-flush" id="accordionFlushExample">
     @foreach (var chapter in chapters)
@@ -47,15 +48,14 @@
                                         <div class="section-content">
                                             @Section.Content
                                             <br />
-                                            <button type="button" class="btn btn-warning">Khung xử phạt : @Section.Min đ - @Section.Max đ</button>
-                                            <button type="button" class="btn btn-warning" style="margin-left:350px">Mức xử phạt : @Section.Avg đ</button>
+                                            <button type="button" class="btn btn-warning" style="width: 360px">Khung xử phạt : @Section.Min đ - @Section.Max đ</button>
+                                            <button type="button" class="btn btn-warning btn-muc-xu-phat">Mức xử phạt : @Section.Avg đ</button>
                                             <!--
                                                  <a href="@Url.Action("EditSection", "Home", new { id = Section.ID })">Sửa</a>
                                             <a asp-action="Delete" asp-route-id="@Section.ID">Delete</a>
                                             -->
 
-                                           
-                                            <br />
+                                       
                                         </div>
                                     }
                                 }
